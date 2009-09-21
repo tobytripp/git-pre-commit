@@ -1,0 +1,22 @@
+= Git Pre-Commit
+
+Rake Commit (http://github.com/pgr0ss/rake_commit_tasks) is a great tool for
+helping make sure our check-ins don't break the build.  However, in Git we
+don't need all that stuff.  Running our tests before check-in is easy with a
+Git pre-commit hook.
+
+This plug-in ensures that such a hook is installed on the developer's 
+repository.  If no such hook is installed, one will be installed that calls
++rake precommit+
+
+== Installation
+
+    script/plugin install git://github.com/tobytripp/git-pre-commit
+
+or
+
+    git clone git://github.com/tobytripp/git-pre-commit.git vendor/plugins/git_pre_commit
+
+_or_
+
+    git submodule add git://github.com/tobytripp/git-pre-commit.git vendor/plugins/git_pre_commit
