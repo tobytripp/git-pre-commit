@@ -7,7 +7,7 @@ Git pre-commit hook.
 
 This plug-in ensures that such a hook is installed on the developer's 
 repository.  If no such hook is installed, one will be installed that calls
-+rake precommit+
+<tt>rake precommit</tt>
 
 == Installation
 
