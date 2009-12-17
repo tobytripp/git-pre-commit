@@ -5,7 +5,6 @@ unless RAILS_ENV == 'production'
     warn "Git pre-commit hook missing, setting up…"
     copy  t.prerequisites.first, t.name
     chmod 0755, t.name
-    abort "pre-commit hook in place, retry last command."
   end
 
   task :environment => ".git/hooks/pre-commit"
