@@ -1,6 +1,6 @@
 TEMPLATE_PATH= File.join File.dirname(__FILE__), '..'
 
-unless RAILS_ENV == 'production'
+if RAILS_ENV == 'development' || RAILS_ENV == 'test'
   file ".git/hooks/pre-commit" => "#{TEMPLATE_PATH}/git-hooks/pre-commit" do |t|
     warn "Git pre-commit hook missing, setting up…"
     copy  t.prerequisites.first, t.name
