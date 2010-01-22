@@ -6,6 +6,12 @@ if RAILS_ENV == 'development' || RAILS_ENV == 'test'
     copy  t.prerequisites.first, t.name
     chmod 0755, t.name
   end
+  
+  desc "Install the post-commit hook"
+  file ".git/hooks/post-commit" => "#{TEMPLATE_PATH}/git-hooks/post-commit" do |t|
+    copy t.prerequisites.first, t.name
+    chmod 0755, t.name
+  end
 
   task :environment => ".git/hooks/pre-commit"
 end
