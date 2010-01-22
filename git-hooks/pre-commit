@@ -1,11 +1,5 @@
 #!/usr/bin/env sh
 
-# The following will revert local commits, leaving the changes in the working
-# copy.  Not sure what I think of that idea yet…if I wasn't running the
-# build for every local commit, it would save broken commits from being pushed
-# to the remote repository, but I don't do that.
-#   git reset --soft
-
 # Add all local changes to the index and delete removed files.
 git add -A .
 
