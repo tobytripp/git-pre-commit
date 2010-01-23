@@ -1,13 +1,13 @@
 = Git Pre-Commit
 
-Rake Commit (http://github.com/pgr0ss/rake_commit_tasks) is a great tool for
-helping make sure our check-ins don't break the build.  However, in Git we
-don't need all that stuff.  Running our tests before check-in is easy with a
+Rake Commit[http://github.com/pgr0ss/rake_commit_tasks] is a great tool for
+helping make sure our check-ins don't break the build. However, in Git we
+don't need all that stuff. Running our tests before check-in is easy with a
 Git pre-commit hook.
 
-This plug-in ensures that such a hook is installed on the developer's 
-repository.  If no such hook is installed, one will be installed that calls
-<tt>rake precommit</tt>
+This Rails[http://rubyonrails.org/] plug-in ensures that such a hook is
+installed on the developer's repository. If no such hook is installed, one
+will be installed that calls `<tt>rake precommit</tt>`
 
 == Installation
 
