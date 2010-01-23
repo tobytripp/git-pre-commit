@@ -3,7 +3,7 @@ require "rake/tasklib"
 
 module GitPrecommit
   class PrecommitTasks < ::Rake::TaskLib
-    TEMPLATE_PATH= File.join File.dirname(__FILE__), '..'
+    TEMPLATE_PATH= File.join File.dirname(__FILE__), '..', '..'
 
     def initialize()
       yield self if block_given?
