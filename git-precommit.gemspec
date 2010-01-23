@@ -18,11 +18,13 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
-    "README.rdoc",
+    ".gitignore",
+     "README.rdoc",
      "Rakefile",
      "VERSION",
      "git-hooks/post-commit",
      "git-hooks/pre-commit",
+     "git-precommit.gemspec",
      "lib/git-precommit/precommit_tasks.rb",
      "lib/git_precommit.rb",
      "tasks/git.rake"
