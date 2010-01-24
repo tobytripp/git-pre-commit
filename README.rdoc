@@ -44,7 +44,7 @@ Add the following code to your project's Rakefile:
 
 git-precommit can be configured to automatically push to your remote
 repository on successful checkin by installing the post-commit hook:
-    rake .git/hooks/post-commit
+    rake git:postcommit
 However, if you're running a continuous
 integration build, you shouldn't push onto a broken build (unless you're
 pushing the fix).

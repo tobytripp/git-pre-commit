@@ -27,6 +27,14 @@ module GitPrecommit
         copy t.prerequisites.first, t.name
         chmod 0755, t.name
       end
+      
+      namespace :git do
+        desc "Install the git pre-commit hook"
+        task :precommit => ".git/hooks/pre-commit"
+        
+        desc "Install the git post-commit hook"
+        task :postcommit => ".git/hooks/post-commit"
+      end
     end
   end
 end
