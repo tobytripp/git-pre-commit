@@ -51,9 +51,11 @@ pushing the fix).
 
 To check the status of a
 cruisecontrol.rb[http://cruisecontrolrb.thoughtworks.com/] build before
-pushing, install the cruisestatus gem and record the url of your build server
-in a file called CRUISE_URL: sudo gem install cruisestatus echo
-http://my.cruiseserver.rb >> CRUISE_URL
+pushing, install the cruisestatus[http://github.com/tobytripp/cruisestatus]
+gem and record the url of your build server in a file called CRUISE_URL:
+
+    sudo gem install cruisestatus
+    echo http://my.cruiseserver.rb >> CRUISE_URL
 
 Once you've done that, if your build has failed, you'll be prompted before
 your changes will be pushed.
