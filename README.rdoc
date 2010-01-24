@@ -1,6 +1,6 @@
 = Git Pre-Commit
 
-Rake Commit[http://github.com/pgr0ss/rake_commit_tasks] is a great tool for
+Rake-Commit[http://github.com/pgr0ss/rake_commit_tasks] is a great tool for
 helping make sure our check-ins don't break the build. However, in Git we
 don't need all that stuff. Running our tests before check-in is easy with a
 Git pre-commit hook.
@@ -11,12 +11,49 @@ will be installed that calls `<tt>rake precommit</tt>`
 
 == Installation
 
+=== As a Rails Plugin
+
+This plugin can be installed as a gem via config.gem or the gem bundler.
+Require the library as 'git_precommit'.
+
+To install as a non-gem plugin use one of the following commands from the root
+of your Rails project:
+
     script/plugin install git://github.com/tobytripp/git-pre-commit
-
-or
-
     git clone git://github.com/tobytripp/git-pre-commit.git vendor/plugins/git_pre_commit
-
-_or_
-
     git submodule add git://github.com/tobytripp/git-pre-commit.git vendor/plugins/git_pre_commit
+
+One installed, add the following to your project's Rakefile:
+
+    require 'git-precommit/tasks'
+
+Note: the above require will define the git hook tasks only in the
+'development' and 'test' rails environments.
+
+=== In a Stand-Alone Ruby Program
+
+Add the following code to your project's Rakefile:
+
+    require "git_precommit"
+    GitPrecommit::PrecommitTasks.new
+    
+    task :default => ".git/hooks/pre-commit"
+    task :precommit => :default
+
+== CruiseControl.rb Integration
+
+git-precommit can be configured to automatically push to your remote
+repository on successful checkin by installing the post-commit hook:
+    rake .git/hooks/post-commit
+However, if you're running a continuous
+integration build, you shouldn't push onto a broken build (unless you're
+pushing the fix).
+
+To check the status of a
+cruisecontrol.rb[http://cruisecontrolrb.thoughtworks.com/] build before
+pushing, install the cruisestatus gem and record the url of your build server
+in a file called CRUISE_URL: sudo gem install cruisestatus echo
+http://my.cruiseserver.rb >> CRUISE_URL
+
+Once you've done that, if your build has failed, you'll be prompted before
+your changes will be pushed.

@@ -1,4 +1,16 @@
 #!/usr/bin/env sh
+cmd=`which cruisestatus`
 
-git pull --rebase
-git push
+if [ -x "$cmd" ] && [ -f CRUISE_URL ]; then
+  if $cmd -p `cat CRUISE_URL`; then
+    echo "pulling"
+    git pull --rebase
+    git push
+  else
+    echo "aborted due to build failures"
+    exit 1
+  fi
+else
+  git pull --rebase
+  git push
+fi

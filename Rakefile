@@ -11,6 +11,7 @@ begin
     gemspec.homepage = "http://github.com/tobytripp/git-pre-commit"
     gemspec.authors = ["Toby Tripp"]
   end
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler not available. Install it with: gem install jeweler"
 end
