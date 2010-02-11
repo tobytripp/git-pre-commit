@@ -1,16 +1,22 @@
 #!/usr/bin/env sh
 cmd=`which cruisestatus`
 
-if [ -x "$cmd" ] && [ -f CRUISE_URL ]; then
-  if $cmd -p `cat CRUISE_URL`; then
-    echo "pulling"
-    git pull --rebase
-    git push
-  else
-    echo "aborted due to build failures"
-    exit 1
-  fi
-else
+do_push() {
   git pull --rebase
   git push
+}
+
+if [ -x "$cmd" ] && [ -f CRUISE_URL ]; then
+  if $cmd `cat CRUISE_URL`; then
+    do_push
+  elif [ -n "$BUILD_FIX" ] || git log -1 --oneline | grep -i 'build.*fix'; then
+    echo "Pushing build fix"
+    do_push
+  else
+    echo "Push aborted due to build failures."
+    echo "To push a build fix, include 'BUILD FIX' in your commit comment"
+    echo "or set the environment variable: BUILD_FIX"
+  fi
+else
+  do_push
 fi
