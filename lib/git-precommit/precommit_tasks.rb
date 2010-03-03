@@ -17,7 +17,7 @@ module GitPrecommit
     def define()
       desc "Install the git pre-commit hook"
       file ".git/hooks/pre-commit" => "#{template_path}/pre-commit" do |t|
-        warn "Git pre-commit hook missing, setting up…"
+        warn "Git pre-commit hook missing, setting up..."
         copy  t.prerequisites.first, t.name
         chmod 0755, t.name
       end
