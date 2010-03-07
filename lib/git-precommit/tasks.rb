@@ -1,4 +1,4 @@
-if RAILS_ENV == 'development' || RAILS_ENV == 'test'
+if Rails.env == 'development' || Rails.env == 'test'
   require "git_precommit"
   
   GitPrecommit::PrecommitTasks.new
