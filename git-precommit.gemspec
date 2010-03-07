@@ -5,15 +5,17 @@
 
 Gem::Specification.new do |s|
   s.name = %q{git-precommit}
-  s.version = "1.1.1"
+  s.version = "1.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Toby Tripp"]
-  s.date = %q{2010-01-24}
+  s.date = %q{2010-02-11}
+  s.default_executable = %q{setpairs}
   s.description = %q{    A set of rake tasks that install git pre-commit hooks to call your build.
     If your build fails, the commit will not proceed.
 }
   s.email = %q{toby.tripp+git@gmail.com}
+  s.executables = ["setpairs"]
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
@@ -22,6 +24,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "bin/setpairs",
      "git-hooks/post-commit",
      "git-hooks/pre-commit",
      "git-precommit.gemspec",
