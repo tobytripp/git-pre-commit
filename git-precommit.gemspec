@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{git-precommit}
-  s.version = "1.2.0"
+  s.version = "1.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Toby Tripp"]
-  s.date = %q{2010-02-11}
+  s.date = %q{2010-03-07}
   s.default_executable = %q{setpairs}
   s.description = %q{    A set of rake tasks that install git pre-commit hooks to call your build.
     If your build fails, the commit will not proceed.
@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/tobytripp/git-pre-commit}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Fail commits if the tests fail.}
 
   if s.respond_to? :specification_version then
