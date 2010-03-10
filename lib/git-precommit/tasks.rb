@@ -1,4 +1,9 @@
-ENVIRONMENT = Rails.env || RAILS_ENV
+if defined? Rails
+  ENVIRONMENT = Rails.env
+else 
+  ENVIRONMENT = RAILS_ENV || "development"
+end
+
 if %w[development test].include? ENVIRONMENT
   require "git_precommit"
   
