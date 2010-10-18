@@ -8,7 +8,11 @@ module GitPrecommit
       File.expand_path File.join( File.dirname(__FILE__), '..', '..', 'git-hooks' )
     attr_accessor :template_path
     
-    def initialize()
+    def initialize( options={} )
+      @options = {
+        :draconian => false
+      }.merge options
+      
       yield self if block_given?
       @template_path ||= TEMPLATE_PATH
       
