@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
 
   s.summary = %q{Abort git commit if the tests fail.}
   s.description = %q{
-    A set of rake tasks that install git pre-commit hooks to call your build.
+    A set of rake tasks that install git pre-commit hooks to run your tests.
     If your build fails, the commit will not proceed.
     
     Git-precommit will call `rake precommit` to run your tests.  Be sure to define this task.
