@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
     A set of rake tasks that install git pre-commit hooks to call your build.
     If your build fails, the commit will not proceed.
     
-    Git-precommit will call `rake precommit` to run your tests.
+    Git-precommit will call `rake precommit` to run your tests.  Be sure to define this task.
   }
   
   s.files            = `git ls-files`.split("\n")
@@ -27,6 +27,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.6}
 
   s.rubyforge_project = "git-precommit"
+
+  s.add_dependency "rake"
   
   s.add_development_dependency "rspec",    "~> 2.0.0"
   s.add_development_dependency "cucumber", "~> 0.9.0"

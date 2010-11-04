@@ -1,9 +1,10 @@
+#!/usr/bin/env cucumber
 Feature: Pre commit hook installation
 Background:
   Given a directory named ".git/hooks"
     And a file named "Rakefile" with:
     """
-    require "git_precommit"
+    require "../../lib/git_precommit"
     GitPrecommit::PrecommitTasks.new
     
     task :default => ".git/hooks/pre-commit"
@@ -21,7 +22,7 @@ Scenario: The pre-commit hook is modified
   echo "My new hook!"
   """
   
-   And I successfully run "rake"
+   And I successfully run "rake --trace"
    
   Then the file ".git/hooks/pre-commit" should contain "echo"
 

@@ -1,4 +1,4 @@
-# encoding: utf-8
+# -*- encoding: utf-8 -*-
 require "rake"
 require "rake/tasklib"
 
@@ -20,8 +20,21 @@ module GitPrecommit
     end
     
     def define()
+      pre_commit     = ".git/hooks/pre-commit"
+      pre_commit_src = "#{template_path}/pre-commit"
+      
+      task :dragon do |t|
+        if @options[:draconian]
+          copy  pre_commit_src, pre_commit
+          chmod 0755, pre_commit
+        end
+      end
+
+      deps =  [pre_commit_src]
+      deps += [:dragon] if @options[:draconian]
+      
       desc "Install the git pre-commit hook"
-      file ".git/hooks/pre-commit" => "#{template_path}/pre-commit" do |t|
+      file pre_commit => deps do |t|
         warn "Git pre-commit hook missing, setting up…"
         copy  t.prerequisites.first, t.name
         chmod 0755, t.name
@@ -35,7 +48,7 @@ module GitPrecommit
       
       namespace :git do
         desc "Install the git pre-commit hook"
-        task :precommit => ".git/hooks/pre-commit"
+        task :precommit => pre_commit
         
         desc "Install the git post-commit hook"
         task :postcommit => ".git/hooks/post-commit"
