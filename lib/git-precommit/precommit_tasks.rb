@@ -23,19 +23,13 @@ module GitPrecommit
       pre_commit     = ".git/hooks/pre-commit"
       pre_commit_src = "#{template_path}/pre-commit"
       
-      task :overwrite do |t|
-        if @options[:draconian]
-          copy  pre_commit_src, pre_commit
-          chmod 0755, pre_commit
-        end
-      end
+      task :overwrite
 
       deps =  [pre_commit_src]
       deps += [:overwrite] if @options[:draconian]
       
       desc "Install the git pre-commit hook"
       file pre_commit => deps do |t|
-        warn "Git pre-commit hook missing, setting up…"
         copy  t.prerequisites.first, t.name
         chmod 0755, t.name
       end
