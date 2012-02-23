@@ -1,1 +1,2 @@
 rvm --create @git-precommit
+rvm gemset import project.gems
