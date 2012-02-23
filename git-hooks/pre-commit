@@ -1,6 +1,11 @@
 #!/usr/bin/env sh
 
-# Add all local changes to the index and delete removed files.
-git add -A .
+function unstaged_changes {
+    ! git diff --quiet
+}
 
-rake precommit
+if unstaged_changes; then
+    git stash save --keep-index "Performing partial commit against `git rev-parse HEAD`"
+fi
+
+exec time bundle exec rake precommit

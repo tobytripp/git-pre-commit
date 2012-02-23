@@ -20,3 +20,11 @@ if [ -x "$cmd" ] && [ -f CRUISE_URL ]; then
 else
   do_push
 fi
+
+if grep "@\{0\}.*partial commit" < <(git stash list); then
+    git stash pop
+fi
+
+echo
+# echo "FIXMEs Found:"
+# exec bundle exec rake notes:fixme
