@@ -34,4 +34,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "cucumber", "~> 0.9.0"
   s.add_development_dependency "aruba"
   s.add_development_dependency "syntax"
+  s.add_development_dependency "guard",    "~> 0.2.2"
+  s.add_development_dependency "guard-cucumber"
 end
