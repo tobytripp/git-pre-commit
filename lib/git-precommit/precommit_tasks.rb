@@ -4,30 +4,34 @@ require "rake/tasklib"
 
 module GitPrecommit
   class PrecommitTasks < ::Rake::TaskLib
-    TEMPLATE_PATH =
-      File.expand_path File.join( File.dirname(__FILE__), '..', '..', 'git-hooks' )
+    TEMPLATE_PATH = File.expand_path(
+      File.join( File.dirname(__FILE__), '..', '..', 'git-hooks' )
+      )
     attr_accessor :template_path
-    
+
     def initialize( options={} )
       @options = {
-        :draconian => false
+        :draconian => false,
+        :path      => TEMPLATE_PATH
       }.merge options
-      
+
+      @options[:draconian] = true if options[:path]
+
       yield self if block_given?
-      @template_path ||= TEMPLATE_PATH
-      
+      @template_path ||= @options[:path]
+
       define
     end
-    
+
     def define()
       pre_commit     = ".git/hooks/pre-commit"
       pre_commit_src = "#{template_path}/pre-commit"
-      
+
       task :overwrite
 
       deps =  [pre_commit_src]
       deps += [:overwrite] if @options[:draconian]
-      
+
       desc "Install the git pre-commit hook"
       file pre_commit => deps do |t|
         copy  t.prerequisites.first, t.name
@@ -39,11 +43,11 @@ module GitPrecommit
         copy t.prerequisites.first, t.name
         chmod 0755, t.name
       end
-      
+
       namespace :git do
         desc "Install the git pre-commit hook"
         task :precommit => pre_commit
-        
+
         desc "Install the git post-commit hook"
         task :postcommit => ".git/hooks/post-commit"
       end
