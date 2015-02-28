@@ -1,7 +1,7 @@
 #!/usr/bin/env cucumber
 Feature: Using repository local hook scripts
 Background:
-  Given a directory named ".git/hooks"
+  Given I successfully run "git init"
     And a file named "Rakefile" with:
     """
     require "../../lib/git_precommit"

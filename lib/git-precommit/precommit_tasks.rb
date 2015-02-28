@@ -24,7 +24,7 @@ module GitPrecommit
     end
 
     def define()
-      pre_commit     = ".git/hooks/pre-commit"
+      pre_commit     = "#{git_dir}/hooks/pre-commit"
       pre_commit_src = "#{template_path}/pre-commit"
 
       task :overwrite
@@ -39,7 +39,7 @@ module GitPrecommit
       end
 
       desc "Install the git post-commit hook"
-      file ".git/hooks/post-commit" => "#{template_path}/post-commit" do |t|
+      file "#{git_dir}/hooks/post-commit" => "#{template_path}/post-commit" do |t|
         copy t.prerequisites.first, t.name
         chmod 0755, t.name
       end
@@ -49,8 +49,11 @@ module GitPrecommit
         task :precommit => pre_commit
 
         desc "Install the git post-commit hook"
-        task :postcommit => ".git/hooks/post-commit"
+        task :postcommit => "#{git_dir}/hooks/post-commit"
       end
+    end
+    def git_dir()
+      `git rev-parse --git-dir`.strip
     end
   end
 end
