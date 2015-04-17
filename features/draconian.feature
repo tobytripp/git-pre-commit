@@ -1,7 +1,7 @@
 #!/usr/bin/env cucumber
 Feature: Draconian option
 Background:
-  Given a directory named ".git/hooks"
+  Given I successfully run "git init"
     And a file named "Rakefile" with:
     """
     require "../../lib/git_precommit"
